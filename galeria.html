@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda - Galería de Productos</title>
+    <!-- Bootstrap CSS y Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header con navegación -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">
+                    <i class="bi bi-bag-check-fill text-warning me-2"></i>Tienda Sara
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="galeria.html">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito <i class="bi bi-cart3"></i></a></li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar">
+                        <button class="btn btn-outline-warning" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-4">
+        <h1 class="mb-4">Catálogo de Productos</h1>
+
+        <div class="row">
+            <!-- Columna de Filtros (Izquierda) -->
+            <aside class="col-lg-3 mb-4">
+                <div class="card p-3 shadow-sm">
+                    <h5 class="card-title border-bottom pb-2 mb-3"><i class="bi bi-funnel-fill text-primary"></i> Filtros</h5>
+                    
+                    <!-- Filtro por Categoría -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Categoría</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="catElect" checked>
+                            <label class="form-check-label" for="catElect">Electronicos</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="catGaming">
+                            <label class="form-check-label" for="catGaming">Calzado</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="catAudio">
+                            <label class="form-check-label" for="catAudio">Audio</label>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Marca -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Marca</label>
+                        <select class="form-select form-select-sm">
+                            <option selected>Todas las marcas</option>
+                            <option value="1">Skullcandy</option>
+                            <option value="2">Ikea</option>
+                            <option value="3">Adidas</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro por Precio -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Precio Máximo</label>
+                        <input type="range" class="form-range" min="10" max="500" id="rangoPrecio">
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span>$10</span>
+                            <span>$500</span>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Color -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Color</label>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-dark rounded-circle p-2 cursor-pointer" title="Negro">&nbsp;</span>
+                            <span class="badge bg-secondary rounded-circle p-2 cursor-pointer" title="Gris">&nbsp;</span>
+                            <span class="badge bg-primary rounded-circle p-2 cursor-pointer" title="Azul">&nbsp;</span>
+                            <span class="badge bg-danger rounded-circle p-2 cursor-pointer" title="Rojo">&nbsp;</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100 btn-sm"><i class="bi bi-filter"></i> Aplicar Filtros</button>
+                </div>
+            </aside>
+
+            <!-- Área Principal: Ordenamiento y Grid de Productos (Derecha) -->
+            <main class="col-lg-9">
+                <!-- Barra superior de Ordenar por -->
+                <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded mb-4 shadow-sm">
+                    <span class="text-muted small">Mostrando 6 de 24 productos</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="ordenarSelect" class="form-label mb-0 small text-nowrap fw-bold">Ordenar por:</label>
+                        <select class="form-select form-select-sm" id="ordenarSelect">
+                            <option value="relevancia">Relevancia</option>
+                            <option value="menor-precio">Precio: Menor a Mayor</option>
+                            <option value="mayor-precio">Precio: Mayor a Menor</option>
+                            <option value="popularidad">Popularidad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid de Productos -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                    
+                    <!-- Producto 1 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm position-relative">
+                            <span class="position-absolute top-0 start-0 bg-success text-white px-2 py-1 m-2 rounded small fw-bold">Nuevo</span>
+                            <img src="https://cdn5.coppel.com/pm/2665223-1.jpg?iresize=width:564,height:451" class="card-img-top" alt="Audífonos Bluetooth">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Audífonos Bluetooth Pro</h5>
+                                <p class="card-text text-muted small">Sonido de alta fidelidad con cancelación activa de ruido.</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="h5 mb-0 fw-bold">$899</span>
+                                        <span class="text-warning small"><i class="bi bi-star-fill"></i> 4.8</span>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm position-relative">
+                            <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded small fw-bold">-25% Descuento</span>
+                            <img src="https://cdn5.coppel.com/pm/6709523-1.jpg?iresize=width:564,height:451" class="card-img-top" alt="Smartwatch Sport">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Lavadora automatica 4 modos</h5>
+                                <p class="card-text text-muted small">Centrifugado, lavado, enjabonado y secado.</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <span class="h5 mb-0 fw-bold">$5,999</span>
+                                            <small class="text-decoration-line-through text-muted ms-1">$6,999</small>
+                                        </div>
+                                        <span class="text-warning small"><i class="bi bi-star-fill"></i> 4.6</span>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm position-relative">
+                            <span class="position-absolute top-0 start-0 bg-warning text-dark px-2 py-1 m-2 rounded small fw-bold">Popular</span>
+                            <img src="https://cdn5.coppel.com/pr/8265602-1.jpg?iresize=width:564,height:451" class="card-img-top" alt="Mouse Gamer RGB">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Tenis adidas para correr ultra ligeros</h5>
+                                <p class="card-text text-muted small">Tela sedosa con alto rendimiento competencia</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="h5 mb-0 fw-bold">$1,299</span>
+                                        <span class="text-warning small"><i class="bi bi-star-fill"></i> 4.9</span>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://cdn5.coppel.com/pm/6692963-1.jpg?iresize=width:564,height:451" class="card-img-top" alt="Teclado Mecánico">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Horno de Microondas Negro</h5>
+                                <p class="card-text text-muted small">6 modos de calentamiento y timer automático.</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="h5 mb-0 fw-bold">$3,599</span>
+                                        <span class="text-warning small"><i class="bi bi-star-fill"></i> 4.5</span>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 5 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm position-relative">
+                            <span class="position-absolute top-0 start-0 bg-success text-white px-2 py-1 m-2 rounded small fw-bold">Nuevo</span>
+                            <img src="https://cdn5.coppel.com/pr/8340622-1.jpg?iresize=width:564,height:451" class="card-img-top" alt="Camára Web HD">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Tenis nike rojo basketball</h5>
+                                <p class="card-text text-muted small">Calzado ideal para el ejercicio físico y deportes.</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="h5 mb-0 fw-bold">$1,199</span>
+                                        <span class="text-warning small"><i class="bi bi-star-fill"></i> 4.3</span>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 6 -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm position-relative">
+                            <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded small fw-bold">-15% Descuento</span>
+                            <img src="https://cdn5.coppel.com/mkp/36404212-1.jpg?iresize=width:564,height:451" class="card-img-top" alt="Bocina Bluetooth">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bocina Portátil BassPro</h5>
+                                <p class="card-text text-muted small">Batería de larga duración y resistencia al agua IPX7.</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <span class="h5 mb-0 fw-bold">$799</span>
+                                            <small class="text-decoration-line-through text-muted ms-1">$1,399</small>
+                                        </div>
+                                        <span class="text-warning small"><i class="bi bi-star-fill"></i> 4.7</span>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Paginación -->
+                <nav aria-label="Navegación de productos" class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Pie de página (Footer) -->
+    <footer class="bg-dark text-white pt-4 pb-3 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>MiTienda</h5>
+                    <p class="small text-secondary">Tu tienda en línea de confianza para toda clase de tecnología y artículos modernos.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Enlaces Útiles</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                        <li><a href="galeria.html" class="text-white text-decoration-none">Productos</a></li>
+                        <li><a href="carrito.html" class="text-white text-decoration-none">Carrito de Compras</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contacto y Redes</h5>
+                    <p class="small mb-1"><i class="bi bi-envelope me-2"></i>TiendaSara@tiendas.com</p>
+                    <p class="small mb-2"><i class="bi bi-telephone me-2"></i>+52 55 1234 5678</p>
+                    <div>
+                        <a href="#" class="text-white me-3 fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3 fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <p class="text-center small mb-0 text-secondary">&copy; 2026 Tienda Sara. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
